@@ -11,7 +11,7 @@ import Moya
 import RxCocoa
 
 protocol FetchApiServices {
-    
+    func fetchHeadline(withCategory category: String) -> Single<NewsResponse?>
 }
 
 final class NetworkManager: FetchApiServices {
@@ -42,5 +42,11 @@ final class NetworkManager: FetchApiServices {
                 let error = APIError(with: .unknown)
                 return Single.error(error)
             }
+    }
+}
+
+extension NetworkManager {
+    func fetchHeadline(withCategory category: String) -> Single<NewsResponse?> {
+        return request(networkService: .topHeadlines(category: category))
     }
 }

@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: - NewsResponse
-struct NewsResponse: Decodable, Equatable {
+struct NewsResponse: Codable, Equatable {
     let articles: [Article]
     let totalResults: Int?
 }
 
 // MARK: - Article
-struct Article: Decodable, Equatable {
+struct Article: Codable {
     let source: SourceResponse?
     let title: String?
     let description: String?
@@ -25,7 +25,7 @@ struct Article: Decodable, Equatable {
     let content: String?
 }
 
-extension Article {
+extension Article: Equatable{
     static func == (lhs: Article, rhs: Article) -> Bool {
       return lhs.title == rhs.title && lhs.description == rhs.description
     }

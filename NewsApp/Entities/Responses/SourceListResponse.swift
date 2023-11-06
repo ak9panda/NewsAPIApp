@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SourceListResponse: Decodable, Equatable {
+struct SourceListResponse: Codable, Equatable {
     let sources: [SourceResponse]?
     let status: String?
 }
