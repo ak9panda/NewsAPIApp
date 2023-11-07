@@ -12,6 +12,8 @@ import RxCocoa
 
 protocol FetchApiServices {
     func fetchHeadline(withCategory category: String) -> Single<NewsResponse?>
+    func fetchHeadlineWithSource(sourceId: String) -> Single<NewsResponse?>
+    func fetchNewsSources() -> Single<SourceListResponse?>
 }
 
 final class NetworkManager: FetchApiServices {
@@ -48,5 +50,13 @@ final class NetworkManager: FetchApiServices {
 extension NetworkManager {
     func fetchHeadline(withCategory category: String) -> Single<NewsResponse?> {
         return request(networkService: .topHeadlines(category: category))
+    }
+    
+    func fetchHeadlineWithSource(sourceId: String) -> Single<NewsResponse?> {
+        return request(networkService: .topHeadlinesWithSource(sourceId: sourceId))
+    }
+    
+    func fetchNewsSources() -> Single<SourceListResponse?> {
+        return request(networkService: .getSources)
     }
 }

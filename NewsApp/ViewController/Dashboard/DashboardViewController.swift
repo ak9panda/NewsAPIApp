@@ -88,12 +88,12 @@ extension DashboardViewController {
         viewModel.updateNews(withCategory: "")
     }
     
-    @objc func onTouchCategoryBtn(){
+    @objc func onTouchCategoryBtn() {
          showCategories()
     }
     
-    @objc func onTouchSourcesBtn(){
-         showCategories()
+    @objc func onTouchSourcesBtn() {
+        showNewsSources()
     }
 }
 
@@ -149,6 +149,19 @@ extension DashboardViewController {
                 self?.currentCategory = categoryName
                 let category = categoryName == "All" ? "" : categoryName
                 self?.viewModel.updateNews(withCategory: category)
+            }.disposed(by: disposeBag)
+    }
+    
+    fileprivate func showNewsSources() {
+        let navigationVC = UINavigationController()
+        let categoriesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewsSourcesViewController") as! NewsSourcesViewController
+        navigationVC.viewControllers = [categoriesVC]
+        self.present(navigationVC, animated: true)
+        
+        categoriesVC.selectedSource
+            .asDriver(onErrorJustReturn: "")
+            .drive { [weak self] sourceId in
+                self?.viewModel.updateNewsWithSource(sourceId: sourceId)
             }.disposed(by: disposeBag)
     }
 }

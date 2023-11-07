@@ -13,7 +13,7 @@ extension Reactive where Base: UIViewController {
     public var isAnimating: Binder<Bool> {
         return Binder(self.base, binding: { (vc, active) in
             if active {
-                LoadingIndicator.shared.show()
+                LoadingIndicator.shared.show(vc: vc)
             } else {
                 LoadingIndicator.shared.hide()
             }

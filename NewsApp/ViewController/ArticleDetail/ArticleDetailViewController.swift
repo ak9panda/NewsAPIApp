@@ -46,9 +46,18 @@ class ArticleDetailViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
-        setBackgroundGradient()
         
         self.articleDetail = getArticleDetail
+        
+        // set the corner radius
+        gradientView.layer.cornerRadius = 10.0
+        gradientView.clipsToBounds = true
+        // set the shadow properties
+        gradientView.layer.shadowColor = UIColor.black.cgColor
+        gradientView.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        gradientView.layer.shadowOpacity = 0.2
+        gradientView.layer.shadowRadius = 4.0
+        gradientView.layer.masksToBounds = false
     }
     
     @IBAction func onTouchRealMore(_ sender: Any) {
@@ -76,16 +85,5 @@ extension ArticleDetailViewController {
         safariController.modalPresentationStyle = .overFullScreen
 
         present(safariController, animated: true, completion: nil)
-    }
-    
-    fileprivate func setBackgroundGradient() {
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.colors = [UIColor.clear.cgColor, UIColor.white.cgColor]
-        gradient.locations = [0.0 , 1.0]
-        gradient.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 100)
-
-        self.gradientView.layer.insertSublayer(gradient, at: 0)
     }
 }

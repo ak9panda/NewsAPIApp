@@ -18,6 +18,7 @@ protocol DashboardViewModelProtocol: AnyObject {
     
     func infoForRowAt(_ index: Int) -> Article
     func updateNews(withCategory category: String)
+    func updateNewsWithSource(sourceId: String)
 }
 
 final class DashboardViewModel {
@@ -52,6 +53,22 @@ extension DashboardViewModel: DashboardViewModelProtocol {
         service.fetchHeadline(withCategory: category)
             .observe(on: MainScheduler.instance)
             .subscribe (onSuccess: { [weak self] tasks in
+                guard let `self` = self, let tasks = tasks else { return }
+                self.articleList = tasks.articles
+                self.updateInfoSubject.onNext(true)
+                self.loadingSubject.onNext(false)
+            }, onFailure: { [weak self] error in
+                guard let errorValue = error as? APIError else { return }
+                self?.loadingSubject.onNext(false)
+                print(errorValue.localizedDescription)
+            }).disposed(by: disposeBag)
+    }
+    
+    func updateNewsWithSource(sourceId: String) {
+        self.loadingSubject.onNext(true)
+        service.fetchHeadlineWithSource(sourceId: sourceId)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] tasks in
                 guard let `self` = self, let tasks = tasks else { return }
                 self.articleList = tasks.articles
                 self.updateInfoSubject.onNext(true)
