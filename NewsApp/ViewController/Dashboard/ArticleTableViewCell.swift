@@ -22,9 +22,9 @@ final class ArticleTableViewCell: BaseTableViewCell {
     
     private let lblArticleTitle: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.textColor = .white
+        titleLabel.textColor = .label
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        titleLabel.numberOfLines = 2
+        titleLabel.numberOfLines = 3
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -34,14 +34,14 @@ final class ArticleTableViewCell: BaseTableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.tintColor = .white
+        imageView.tintColor = .label
         imageView.image = UIImage(named: "icon_calendar")
         return imageView
     }()
     
     private let lblDate: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.textColor = .white
+        titleLabel.textColor = .label
         titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         titleLabel.numberOfLines = 1
         titleLabel.textAlignment = .left
@@ -53,14 +53,14 @@ final class ArticleTableViewCell: BaseTableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.tintColor = .white
+        imageView.tintColor = .label
         imageView.image = UIImage(named: "icon_pen")
         return imageView
     }()
     
     private let lblAuthor: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.textColor = .white
+        titleLabel.textColor = .label
         titleLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         titleLabel.numberOfLines = 1
         titleLabel.textAlignment = .left
@@ -85,12 +85,6 @@ final class ArticleTableViewCell: BaseTableViewCell {
             make.bottom.equalToSuperview().offset(-20)
         }
         
-        lblArticleTitle.snp.makeConstraints { make in
-            make.top.equalTo(imgPoster).offset(5)
-            make.left.equalTo(imgPoster.snp_rightMargin).offset(20)
-            make.right.equalToSuperview().offset(-20)
-        }
-        
         calendarIcon.snp.makeConstraints{ make in
             make.left.equalTo(imgPoster.snp_rightMargin).offset(20)
             make.height.equalTo(14)
@@ -99,12 +93,18 @@ final class ArticleTableViewCell: BaseTableViewCell {
         }
         
         lblDate.snp.makeConstraints{(make) in
-            make.bottom.equalToSuperview().offset(-20)
-            make.left.equalTo(calendarIcon.snp_rightMargin).offset(10)
+            make.top.equalToSuperview().offset(20)
+            make.left.equalTo(calendarIcon.snp_rightMargin).offset(20)
+        }
+        
+        lblArticleTitle.snp.makeConstraints { make in
+            make.top.equalTo(lblDate.snp_bottomMargin).offset(10)
+            make.left.equalTo(imgPoster.snp_rightMargin).offset(20)
+            make.right.equalToSuperview().offset(-20)
         }
         
         authorIcon.snp.makeConstraints { make in
-            make.left.equalTo(lblAuthor.snp_rightMargin).offset(10)
+            make.left.equalTo(imgPoster.snp_rightMargin).offset(20)
             make.height.equalTo(14)
             make.width.equalTo(14)
             make.centerY.equalTo(lblAuthor)
@@ -112,7 +112,7 @@ final class ArticleTableViewCell: BaseTableViewCell {
         
         lblAuthor.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-20)
-            make.left.equalTo(authorIcon.snp_rightMargin).offset(10)
+            make.left.equalTo(authorIcon.snp_rightMargin).offset(20)
             make.right.equalToSuperview().offset(-20)
         }
 

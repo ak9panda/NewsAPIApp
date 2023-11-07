@@ -48,7 +48,8 @@ extension DashboardViewModel: DashboardViewModelProtocol {
     func infoForRowAt(_ index: Int) -> Article { self.articleList[index] }
     
     func updateNews(withCategory category: String) {
-        service.fetchHeadline(withCategory: "")
+        self.loadingSubject.onNext(true)
+        service.fetchHeadline(withCategory: category)
             .observe(on: MainScheduler.instance)
             .subscribe (onSuccess: { [weak self] tasks in
                 guard let `self` = self, let tasks = tasks else { return }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingIndicator" customModule="NewsApp" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundView" destination="OPX-6v-WI2" id="o9l-5Q-giy"/>
+                <outlet property="indicator" destination="sWp-SW-Rgi" id="3Wr-ca-Eps"/>
+                <outlet property="parientView" destination="iN0-l3-epB" id="q86-VO-sux"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPX-6v-WI2">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="sWp-SW-Rgi">
+                            <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="sWp-SW-Rgi" firstAttribute="centerX" secondItem="OPX-6v-WI2" secondAttribute="centerX" id="g2g-pw-mId"/>
+                        <constraint firstItem="sWp-SW-Rgi" firstAttribute="centerY" secondItem="OPX-6v-WI2" secondAttribute="centerY" id="nY1-yt-YvK"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="OPX-6v-WI2" secondAttribute="bottom" id="B4E-6g-jvh"/>
+                <constraint firstItem="OPX-6v-WI2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Hda-5M-Bfk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OPX-6v-WI2" secondAttribute="trailing" id="IEe-i1-1gq"/>
+                <constraint firstItem="OPX-6v-WI2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MTK-NV-fcS"/>
+            </constraints>
+            <point key="canvasLocation" x="115" y="20"/>
+        </view>
+    </objects>
+</document>
